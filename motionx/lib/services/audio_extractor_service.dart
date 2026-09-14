@@ -4,18 +4,17 @@ import 'package:path_provider/path_provider.dart';
 
 class AudioExtractorService {
   static Future<File?> pickVideo() async {
-    // Di versi ini, pickFiles langsung mengembalikan list atau FilePickerResult
-    final res = await FilePicker.platform.pickFiles(type: FileType.video);
-    if (res != null && res.files.isNotEmpty && res.files.first.path != null) {
-      return File(res.files.first.path!);
+    final res = await FilePicker.pickFiles(type: FileType.video);
+    if (res != null && res.isNotEmpty && res.first.path != null) {
+      return File(res.first.path!);
     }
     return null;
   }
 
   static Future<File?> pickAudio() async {
-    final res = await FilePicker.platform.pickFiles(type: FileType.audio);
-    if (res != null && res.files.isNotEmpty && res.files.first.path != null) {
-      return File(res.files.first.path!);
+    final res = await FilePicker.pickFiles(type: FileType.audio);
+    if (res != null && res.isNotEmpty && res.first.path != null) {
+      return File(res.first.path!);
     }
     return null;
   }
